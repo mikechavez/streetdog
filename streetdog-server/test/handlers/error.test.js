@@ -1,10 +1,10 @@
 const request = require('supertest');
-const app = require('../../index');
+const app = require('../../app');
 const error = require('../../handlers/error');
 
 
 describe('Test Error Handler', () => {
-  test('It should return the error message', () => {
+  test('It should return 404 status', () => {
     return request(app)
       .get('/foo/bar')
       .then((res) => {
@@ -13,18 +13,12 @@ describe('Test Error Handler', () => {
   });
 });
 
-// describe('starting server', () => {
-//   let server;
-//   beforeEach(() => {
-//     server = require('./server');
-//   });
-//   afterEach(() => {
-//     server.close();
-//   });
-//   test('responds to /', (done) => {
-//     request(server)
-//     .get('/')
-//     expect(200,done);
-//   });
-
-// })
+describe('starting server', () => {
+  test('responds to /', () => {
+    return request(app)
+      .get('/')
+      .then((res) => {
+        expect(res.statusCode).toBe(200);
+      });
+  });
+})

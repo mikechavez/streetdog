@@ -9,6 +9,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // TODO: ROUTES
+app.get('/', (req, res) => {
+  res.status(200).send('Hello World!')
+})
 
 app.use(function(req, res, next) {
   const err = new Error("Not Found");
@@ -16,8 +19,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+// HANDLERS
 app.use(errorHandler);
-
-
 
 module.exports = app;
