@@ -6,9 +6,11 @@ const config = require('../config/config');
 mongoose.set("debug", true);
 
 // tell mongoose methods to return promises
-mongoose.Promise = Promise; 
+mongoose.Promise = Promise;
 
 mongoose.connect(config.db, {
   keepAlive: true,
-  useMongoClient: true
+  useNewUrlParser: true
 });
+
+module.exports.User = require('./user');

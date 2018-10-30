@@ -17,7 +17,8 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   profileImageUrl: {
-    type: String
+    type: String,
+    // required: true
   }
 });
 
@@ -35,15 +36,15 @@ userSchema.pre('save', async function(next) {
 });
 
 // Authenticate user provided password
-userSchema.method.comparePassword = async function(candidatePassword, next) {
+userSchema.methods.comparePassword = async function(candidatePassword, next) {
   try {
-    const isMatch = await bcrypt.compare(candidatePassword, this.password);
+    let isMatch = await bcrypt.compare(candidatePassword, this.password);
     return isMatch;
   } catch (err) {
     return next(err);
   }
 }
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;

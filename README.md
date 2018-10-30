@@ -16,3 +16,8 @@ Visit http://editorconfig.org for details.
 
 This project uses ESLint to detect suspicious code in JavaScript files.
 Visit http://eslint.org for details.
+
+
+## Security
+
+This projects uses bcrypt for hashing passwords.

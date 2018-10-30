@@ -1,12 +1,14 @@
 module.exports = {
   "parserOptions": {
-    "ecmaVersion": "2017",
+    "ecmaVersion": "6",
     "sourceType": "module"
   },
   "env": {
-    "node": true
+    "node": true,
+    "es6": true,
+    "jest": true
   },
-  "extends": ["eslint:recommended", "airbnb-base"],
+  "extends": "eslint:recommended",
   "rules": {
     "no-multiple-empty-lines": "warn",
     "no-var": "error",
