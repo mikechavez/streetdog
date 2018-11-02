@@ -1,9 +1,9 @@
 const request = require('supertest');
 const app = require('../../app');
 
-describe('Test App Routes', () => {
+describe('Test Auth Routes', () => {
 
-  describe('Invalid Route', () => {
+  describe('Signup Route', () => {
     test('It should return 404 status', () => {
       return request(app)
         .get('/foo/bar')
@@ -23,4 +23,3 @@ describe('Test App Routes', () => {
     });
   })
 })
-

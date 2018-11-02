@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const config = require('../config/config');
 
 
-// show mongo querys in terminal output
+// show mongo queries in terminal output
 mongoose.set("debug", true);
 
 // tell mongoose methods to return promises

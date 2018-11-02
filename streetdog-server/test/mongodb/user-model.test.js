@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const UserModel = require('../../models/user');
 const config = require('../../config/config');
 
-
+// tell mongoose methods to return promises
+mongoose.Promise = Promise;
 
 describe('Test the User Model', () => {
   describe('Test the comparePassword method', () => {

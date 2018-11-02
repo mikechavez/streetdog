@@ -5,10 +5,13 @@
   "main": "index.js",
   "scripts": {
     "debug": "cross-env DEBUG=streetdog-server:* nodemon",
-    "test": "jest --verbose"
+    "test": "jest --verbose --runInBand"
   },
   "directories": {
     "test": "test"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>test/setup-test.js"
   },
   "author": "Mike Chavez",
   "license": "ISC",
