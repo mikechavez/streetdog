@@ -1,9 +1,9 @@
 const db = require('../models');
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
 
 exports.createShop = async function(req, res, next) {
   try {
-    db.User.find({});
-    db.Shop.find({});
     const shop = await db.Shop.create({
       name: req.body.name,
       location: req.body.location,
@@ -20,16 +20,45 @@ exports.createShop = async function(req, res, next) {
       username: true,
       profileImageUrl: true
     });
-    return res.status(200).json();
+    return res.status(200).json(foundShop);
   } catch (err) {
     return next(err);
   }
 }
 
-// exports.getShop = async function (req, res, next) {
-//   try {
-//     const foundShop = await db.Shop.find(req.params.)
-//   } catch (err) {
+exports.getShop = async function (req, res, next) {
+  try {
+    console.log('hello');
+    const shop = await db.Shop.findById(req.params.shop_id);
+    if (shop) {
+      return res.status(200).json(shop);
+    }
+    return next({
+      status: 400,
+      message: 'Invalid shopId, duder.'
+    })
 
-//   }
-// }
+  } catch (err) {
+    return next(err);
+  }
+}
+
+exports.deleteShop = async function(req, res, next) {
+  try {
+    const shop = await db.Shop.findById(req.params.shop_id);
+    if (shop) {
+      await shop.remove();
+      return res.status(200).json({
+        shop_id: req.params.shop_id,
+        message: "removed"
+      });
+    }
+    return next({
+      status: 400,
+      message: 'Invalid shopId, duder.'
+    })
+
+  } catch (err) {
+    return next(err);
+  }
+}

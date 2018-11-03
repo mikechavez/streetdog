@@ -14,3 +14,4 @@ mongoose.connect(config.db, {
 });
 
 module.exports.User = require('./user');
+module.exports.Shop = require('./shop');

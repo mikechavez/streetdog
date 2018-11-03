@@ -71,7 +71,7 @@ exports.signup = async function(req, res, next) {
       }
       return next({
         status: 400,
-        message: err.message
+        message: 'err.message'
       });
 
   }

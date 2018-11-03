@@ -9,7 +9,7 @@ const {
 
 router.route('/register').post(createShop);
 
-router.route('/')
+router.route('/:shop_id')
   .get(getShop)
   .delete(deleteShop)
 
