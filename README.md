@@ -1,6 +1,6 @@
 # streetdog
 
-This is a Node.js and Express website that accepts and lists profiles for street vendors in the Greater Los Angeles area.
+This is a Node.js and Express website that creates and lists profiles for street vendors in the Greater Los Angeles area.
 
 ## Getting Started
 
