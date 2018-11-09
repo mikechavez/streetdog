@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Logo from '../images/streetdog-logo3.png'
+import { logout } from '../store/actions/auth'
 
 class Navbar extends Component {
+  logout = e => {
+    e.preventDefault();
+    this.props.logout();
+  }
 
   render() {
     return (
@@ -14,14 +19,30 @@ class Navbar extends Component {
               <img src={ Logo } alt="Streetdog Home"/>
             </Link>
           </div>
-          <ul className="nav navbar-nav navbar-right">
+          {this.props.currentUser.isAuthenticated ? (
+            <ul className="nav navbar-nav navbar-right">
+              <li>
+                <Link
+                  to={`/users/${this.props.currentUser.user.id}/profile/edit`}
+                >
+                  Edit Profile
+                </Link>
+              </li>
+              <li>
+                <a onClick={this.logout}>Log out</a>
+              </li>
+            </ul>
+          )
+          : (
+            <ul className="nav navbar-nav navbar-right">
             <li>
               <Link to='/signup'>Sign up</Link>
             </li>
             <li>
               <Link to='/signin'>Log in</Link>
             </li>
-          </ul>
+            </ul>
+          )}
         </div>
       </nav>
     )
@@ -35,6 +56,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(Navbar);
+export default connect(mapStateToProps, { logout })(Navbar);
 
 // export default Navbar;
