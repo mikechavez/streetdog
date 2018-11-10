@@ -3,11 +3,15 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Homepage from '../components/Homepage';
 import AuthForm from '../components/AuthForm';
+import ShopProfile from '../containers/ShopProfile';
 import { authUser } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
+import withAuth from '../hocs/withAuth'
+
 
 const Main = props => {
   const { authUser, errors, removeError, currentUser } = props;
+  const userId = currentUser.id
   return (
     <div className="container">
       <Switch>
@@ -38,6 +42,9 @@ const Main = props => {
             />
           )
         }}
+        />
+        <Route exact path='/users/shop'
+          component={withAuth(ShopProfile)}
         />
       </Switch>
     </div>
