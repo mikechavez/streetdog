@@ -28,7 +28,6 @@ exports.createShop = async function(req, res, next) {
 
 exports.getShop = async function (req, res, next) {
   try {
-    console.log('hello');
     const shop = await db.Shop.findById(req.params.shop_id);
     if (shop) {
       return res.status(200).json(shop);

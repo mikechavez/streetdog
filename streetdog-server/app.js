@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: true}))
 
 app.use('/api/auth', authRoutes);
-app.use('/api/users/:id',
+app.use('/api/users/',
   loginRequired,
   ensureCorrectUser,
   shopRoutes
