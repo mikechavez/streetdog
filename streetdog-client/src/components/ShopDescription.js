@@ -2,9 +2,13 @@ import React from 'react';
 
 
 const ShopDescription = ({ description }) => (
+  
   <div>
     You made it to the shop!
-    {description}
+    <div className="description-area">
+      {description}
+    </div>
+
   </div>
 )
 

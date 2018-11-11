@@ -3,19 +3,19 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Homepage from '../components/Homepage';
 import AuthForm from '../components/AuthForm';
-import ShopProfile from '../containers/ShopProfile';
 import { authUser } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
 import withAuth from '../hocs/withAuth'
+import ProfileForm from './ProfileForm';
 
 
 const Main = props => {
   const { authUser, errors, removeError, currentUser } = props;
-  const userId = currentUser.id
   return (
     <div className="container">
       <Switch>
         <Route exact path='/' render={props => <Homepage currentUser={currentUser} {...props} />} />
+        <Route exact path='/users/shop' render={props => <Homepage currentUser={currentUser} {...props} />} />
         <Route exact path='/signin' render={props => {
           return (
             <AuthForm
@@ -43,9 +43,11 @@ const Main = props => {
           )
         }}
         />
-        <Route exact path='/users/shop'
-          component={withAuth(ShopProfile)}
+        <Route
+          path='/users/:id/shop/register'
+          component={withAuth(ProfileForm)}
         />
+    
       </Switch>
     </div>
   )

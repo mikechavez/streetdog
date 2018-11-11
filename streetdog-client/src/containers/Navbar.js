@@ -23,7 +23,7 @@ class Navbar extends Component {
             <ul className="nav navbar-nav navbar-right">
               <li>
                 <Link
-                  to={`/users/${this.props.currentUser.user.id}/profile/edit`}
+                  to={`/users/${this.props.currentUser.user.id}/shop/register`}
                 >
                   Edit Profile
                 </Link>

@@ -7,7 +7,7 @@ const {
   deleteShop
 } = require ('../handlers/shop');
 
-router.route('/register').post(createShop);
+router.route('/').post(createShop);
 
 router.route('/shop')
   .get(getShop)
