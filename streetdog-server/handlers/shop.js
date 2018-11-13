@@ -4,6 +4,7 @@ const ObjectId = mongoose.Types.ObjectId;
 
 exports.createShop = async function(req, res, next) {
   try {
+    // db.Shop.createIndex( { user : 1}, { unique: true });
     const shop = await db.Shop.create({
       name: req.body.name,
       location: req.body.location,
@@ -22,6 +23,9 @@ exports.createShop = async function(req, res, next) {
     });
     return res.status(200).json(foundShop);
   } catch (err) {
+    if (err.code === 11000) {
+      err.message = "This username already has a shop associated with it";
+    }
     return next(err);
   }
 }
