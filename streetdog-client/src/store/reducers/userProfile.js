@@ -1,14 +1,14 @@
 import { LOAD_PROFILE } from '../actionTypes';
 
-const DEFAULT_STATE = {
-  userProfile: {}
-}
+// const DEFAULT_STATE = {
+//   userProfile: {}
+// }
 
-export default (state = DEFAULT_STATE, action) => {
+export default (state = {}, action) => {
   switch(action.type) {
     case LOAD_PROFILE:
       return {
-        profile: [...action.profile]
+        shop: action.profile
       };
     default:
       return state;

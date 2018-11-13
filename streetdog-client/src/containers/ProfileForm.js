@@ -16,8 +16,14 @@ class ProfileForm extends Component {
 
   handleNewProfile = e => {
     e.preventDefault();
-    this.props.postNewProfile(this.state);
-    this.props.history.push('/users/shop');
+    this.props
+      .postNewProfile(this.state)
+      .then(() => {
+        this.props.history.push('/users/shop');
+      })
+      .catch(() => {
+        return;
+      })
   }
 
   handleChange = e => {
@@ -30,7 +36,7 @@ class ProfileForm extends Component {
     return (
       <form onSubmit={this.handleNewProfile}>
         {errors.message && (
-          <div className="alert alert-danger">{errors}</div>
+          <div className="alert alert-danger">{errors.message}</div>
         )}
         <label htmlFor="name">Name:</label>
         <input

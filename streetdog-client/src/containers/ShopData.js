@@ -1,26 +1,44 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {  withRouter } from 'react-router-dom';
+// import {  withRouter } from 'react-router-dom';
 import ShopDescription from '../components/ShopDescription';
 import { fetchProfile } from '../store/actions/profile';
 import { removeError } from '../store/actions/errors';
 
 
 class ShopData extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fetchProfileSuccess: null
+    }
+    
+  }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchProfile();
   }
 
+
+
+  
+
   render() {
     
-    const { userProfile, errors, history } = this.props;
+    const { shop, errors } = this.props;
+
     return (
       <div>
+    
+        <div>
         {errors.message && (
           <div className="alert alert-danger">{errors.message}</div>
         )}
-        <ShopDescription description={userProfile.description}/>
+        {shop &&
+        <ShopDescription description={shop.description}/>
+        }
+        </div>
+      
       </div>
     )
   }
@@ -28,12 +46,10 @@ class ShopData extends Component {
 
 function mapStateToProps(state) {
   return {
-    userProfile: state.userProfile,
+    shop: state.userProfile.shop,
     errors: state.errors
   }
 }
 
 
-export default withRouter(
-  connect(mapStateToProps,{ fetchProfile, removeError })(ShopData)
-) 
+export default connect(mapStateToProps, { fetchProfile, removeError })(ShopData)
