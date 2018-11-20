@@ -1,5 +1,5 @@
 export const ADD_ERROR = 'ADD_ERROR';
 export const REMOVE_ERROR = 'REMOVE_ERROR';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
-export const LOAD_PROFILE = 'LOAD_PROFILE';
+export const SET_CURRENT_PROFILE = 'SET_CURRENT_PROFILE';
 

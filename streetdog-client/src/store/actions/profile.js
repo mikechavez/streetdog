@@ -1,23 +1,19 @@
 import { apiCall } from '../../services/api';
-import { LOAD_PROFILE } from '../actionTypes';
+import { SET_CURRENT_PROFILE } from '../actionTypes';
 import { addError } from './errors';
 
-export const loadProfile = profile => ({
-  type: LOAD_PROFILE,
+export const setCurrentProfile = profile => ({
+  type: SET_CURRENT_PROFILE,
   profile
 });
 
 export const fetchProfile = () => {
   return (dispatch, getState) => {
-    const { userProfile, currentUser } = getState();
-    
-    // const shopId = userProfile.profile._id;
-    const shopId = '5bea402631637f0be8fd5cfe';
+    const { currentUser } = getState();
     const userId = currentUser.user.id;
-    return apiCall('get', `/api/users/${userId}/shop/${shopId}`)
+    return apiCall('get', `/api/users/${userId}/shop`)
       .then(({...profile}) => {
-        // dispatch(loadProfile(profile.hours));
-        dispatch(loadProfile(profile));
+        dispatch(setCurrentProfile(profile));
       })
       .catch(err => {
         dispatch(addError(err.message));
@@ -31,7 +27,7 @@ export const postNewProfile = profile => (dispatch, getState) => {
   return new Promise((resolve, reject) => {
     return apiCall('post', `/api/users/${id}/shop`, { ...profile })
     .then( ({...profile}) => {
-      dispatch(loadProfile(profile));
+      dispatch(setCurrentProfile(profile));
       resolve();
     })
     .catch(err => {
@@ -40,4 +36,22 @@ export const postNewProfile = profile => (dispatch, getState) => {
     });
   })
     
+}
+
+
+// todo updateProfile
+export const updateProfile = profile => (dispatch, getState) => {
+  const { currentUser } = getState();
+  const id = currentUser.user.id;
+  return new Promise((resolve, reject) => {
+    return apiCall('put', `/api/users/${id}/shop`, { ...profile })
+    .then( ({...profile}) => {
+      dispatch(setCurrentProfile(profile));
+      resolve();
+    })
+    .catch(err => {
+      dispatch(addError(err.message))
+      reject();
+    });
+  })
 }

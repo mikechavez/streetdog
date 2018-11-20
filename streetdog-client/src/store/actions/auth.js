@@ -1,6 +1,7 @@
 import { apiCall, setTokenHeader } from '../../services/api';
-import { SET_CURRENT_USER } from '../actionTypes'
+import { SET_CURRENT_USER, SET_CURRENT_PROFILE } from '../actionTypes'
 import { addError, removeError } from './errors';
+import { setCurrentProfile } from './profile';
 
 export function setCurrentUser(user) {
   return {
@@ -18,6 +19,7 @@ export function logout(){
     localStorage.clear();
     setAuthorizationToken(false);
     dispatch(setCurrentUser({}));
+    dispatch(setCurrentProfile({}));
   }
 }
 

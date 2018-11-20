@@ -44,11 +44,25 @@ ul.nav.navbar-nav li {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index:-1;
-  background-image: url('./images/signed-out-home.jpg');
+  z-index: -1;
+  background-image: url("./images/signed-out-home.jpg");
   background-position: center center;
   background-size: cover;
   text-align: center;
   color: #fff;
   text-shadow: 0 0 8px black;
 }
+
+/* Start: Shop Info Styles */
+.image-slider-container {
+  width: 1200px;
+  margin: 0 auto 10px;
+}
+
+.description-area {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+/* End: Shop Info Styles */
